@@ -15,9 +15,19 @@ const userSchema = new mongoose.Schema(
       maxlength: 50,
       required: true,
     },
+    email: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
     position: {
       type: String,
       enum: positions,
+      required: true,
     },
     managerId: {
       type: mongoose.Schema.Types.ObjectId,

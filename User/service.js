@@ -8,7 +8,16 @@ const {
 
 module.exports.register = async (data) => {
   let response = {};
+  const { email } = data;
+
   try {
+    let existUser = await userModel.find({ email });
+
+    //See if user exist
+    if (existUser.length > 0) {
+      return responseError(409, SERVER_ERROR);
+    }
+
     const user = await userModel.create(data);
     response = { user };
   } catch (e) {
